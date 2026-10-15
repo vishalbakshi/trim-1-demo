@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>trim-1 demo</title>
+<link rel="icon" href="data:,">
+</head>
+<body>
+<h1>trim-1 demo</h1>
+<p id="info">Loading…</p>
+
+<p>
+<label>Previous traces: <select id="history"><option value="">Load a previous trace…</option></select></label>
+</p>
+
+<form id="ask">
+<p>
+<label>Query: <input id="query" type="search" size="60" required></label>
+<label>Setting: <select id="point"></select></label>
+<button>Run</button>
+</p>
+</form>
+
+<p id="status"></p>
+
+<div id="result" hidden>
+<h2>Summary</h2>
+<ul id="summary"></ul>
+
+<h2>Files, ranked by their best line</h2>
+<p>A file's score is the score of its highest-scoring line. "Kept" is how many of its lines trim-1 kept in the output.</p>
+<table border="1">
+<thead><tr><th>Rank</th><th>File</th><th>Best score</th><th>Best line</th><th>Kept / lines</th></tr></thead>
+<tbody id="files"></tbody>
+</table>
+
+<h2>Lines, ranked by score</h2>
+<p>The score is trim-1's probability that the line is needed to answer the query.</p>
+<table border="1">
+<thead><tr><th>Rank</th><th>Location</th><th>Score</th><th>Line</th></tr></thead>
+<tbody id="lines"></tbody>
+</table>
+
+<h2>Output</h2>
+<p>What trim-1 hands back: the kept lines, unchanged and in order, with one "… N lines …" marker for each removed run.</p>
+<details>
+<summary id="output-summary"></summary>
+<pre id="output"></pre>
+</details>
+
+<h2>Trace</h2>
+<p id="saved"></p>
+<details>
+<summary>Raw trace (JSON)</summary>
+<pre id="raw"></pre>
+</details>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+function row(tbody, cells) {
+  const tr = document.createElement("tr");
+  for (const c of cells) {
+    const td = document.createElement("td");
+    if (c instanceof Node) td.append(c); else td.textContent = c;
+    tr.append(td);
+  }
+  tbody.append(tr);
+}
+
+function code(text) {
+  const el = document.createElement("code");
+  el.textContent = text;
+  return el;
+}
+
+function li(text) {
+  const el = document.createElement("li");
+  el.textContent = text;
+  $("summary").append(el);
+}
+
+function show(t) {
+  $("summary").replaceChildren();
+  li(`Query: ${t.query}`);
+  li(`Setting: ${t.point} (keeps every line scoring at least ${t.policy.Floor} × the best line's score, plus the top ${t.policy.TopK} lines, ${t.policy.Context} line of context around each, and their enclosing headers)`);
+  li(`Repository: ${t.repo.path} at ${t.repo.commit ? t.repo.commit.slice(0, 7) : "no commit"}${t.repo.uncommitted_changes ? " with uncommitted changes" : ""}`);
+  li(`Input: ${t.input.files} files, ${t.input.lines.toLocaleString()} lines, ${(t.input.bytes / 1024).toFixed(0)} KB${t.repo.extensions && t.repo.extensions.length ? ` (only ${t.repo.extensions.join(", ")})` : ""}`);
+  li(`Output: ${t.output.unchanged ? `unchanged (${t.output.unchanged_reason})` : `${t.output.kept_lines.toLocaleString()} lines kept, ${t.output.removed_lines.toLocaleString()} removed, ${(t.output.bytes / 1024).toFixed(0)} KB (${(100 * t.output.bytes / t.input.bytes).toFixed(1)}% of the input)`}`);
+  li(`Time: ${t.timings.score_ms} ms to score every line, ${t.timings.compress_ms} ms to score and compress, ${t.timings.load_ms} ms to read the files`);
+  li(`Model: ${t.model}`);
+
+  $("files").replaceChildren();
+  for (const f of t.files) row($("files"), [f.rank, code(f.path), f.best_score.toFixed(4), f.best_line, `${f.kept_lines} / ${f.lines}`]);
+  $("lines").replaceChildren();
+  for (const l of t.lines) row($("lines"), [l.rank, code(`${l.path}:${l.line}`), l.score.toFixed(4), code(l.text.trim())]);
+
+  $("output-summary").textContent = `Show the output (${t.output.unchanged ? "unchanged" : t.output.kept_lines.toLocaleString() + " lines"})`;
+  $("output").textContent = t.output.text;
+  $("saved").textContent = `Saved as traces/${t.started_at.slice(0, 10)}/${t.id}.json`;
+  $("raw").textContent = JSON.stringify(t, null, 2);
+  $("result").hidden = false;
+}
+
+async function loadHistory(select) {
+  const traces = await (await fetch("/traces")).json();
+  const h = $("history");
+  h.replaceChildren(new Option("Load a previous trace…", ""));
+  for (const t of traces) h.append(new Option(`${t.started_at.slice(0, 16).replace("T", " ")} · ${t.point} · ${t.query}`, t.url));
+  if (select) h.value = select;
+}
+
+$("history").addEventListener("change", async (e) => {
+  if (!e.target.value) return;
+  const t = await (await fetch(e.target.value)).json();
+  $("query").value = t.query;
+  $("point").value = t.point;
+  $("status").textContent = "Loaded a saved trace.";
+  show(t);
+});
+
+$("ask").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  $("status").textContent = "Running…";
+  const res = await fetch("/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: $("query").value, point: $("point").value }) });
+  const t = await res.json();
+  if (!res.ok) { $("status").textContent = `Error: ${t.error}`; return; }
+  $("status").textContent = `Done in ${t.timings.compress_ms} ms.`;
+  show(t);
+  loadHistory(`/traces/${t.started_at.slice(0, 10)}/${t.id}.json`);
+});
+
+(async () => {
+  const info = await (await fetch("/info")).json();
+  $("info").textContent = `Searching ${info.files} files in ${info.repo}${info.extensions && info.extensions.length ? ` (only ${info.extensions.join(", ")})` : ""}.`;
+  for (const p of info.points) $("point").append(new Option(p, p));
+  $("point").value = info.default_point;
+  loadHistory();
+})();
+</script>
+</body>
+</html>
