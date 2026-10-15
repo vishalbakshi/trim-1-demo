@@ -16,10 +16,28 @@ go run . -ext .py,.cpp,.cu,.md ~/Documents/ColBERT
 
 Then open http://127.0.0.1:8010. The first version of the page, with file rankings and the compressed output, is at http://127.0.0.1:8010/v1.
 
-The page also works as a static site (GitHub Pages), where it can only load the saved traces. Running a new query needs the server.
+The page also works as a static site (GitHub Pages). See [Static mode](#static-mode).
 
 - `-ext` limits the search to those file extensions. Leave it out to search every git-tracked text file, but bundled docs and JavaScript (like `jquery.js`) push the real code down the ranking.
 - `-port` or `PORT` changes the port (default 8010).
+
+## Static mode
+
+Without the server (on GitHub Pages, or `python3 -m http.server`), the page runs trim-1 in the browser. trim-1 is pure Go with the model embedded, so it compiles to WebAssembly:
+
+- `trim.wasm` (4.5 MB, 1.6 MB gzipped) is built from `wasm/main.go`. It sets a JS function `trimScore(context, query)` that returns `trim.Score`'s lines and scores.
+- `wasm_exec.js` is Go's loader for it, copied from `$(go env GOROOT)/lib/wasm`.
+- `corpus.txt` is the joined ColBERT text the server scores, and `corpus.json` says where it came from.
+
+The page builds the same trace the server does (raw lines and scores, and Opus's picks from `picks.json`) and shows it the same way. It saves nothing. The scores match the server's exactly. A query takes about 530 ms in Chrome, against about 190 ms natively, and the first one takes up to 900 ms.
+
+To rebuild them after changing the repo, the extensions or trim-1:
+
+```bash
+GOOS=js GOARCH=wasm go build -ldflags=-s -o trim.wasm ./wasm
+cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" .
+go run . -ext .py,.cpp,.cu,.md -corpus ~/Documents/ColBERT
+```
 
 ## What the page shows
 

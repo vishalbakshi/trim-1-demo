@@ -6,6 +6,9 @@
 // trim-1 hands back. Every run is saved as a JSON trace.
 //
 // Usage: go run . [-port 8010] [-ext .py] /path/to/repo
+//
+// With -corpus, it writes the joined text to corpus.txt and its details to
+// corpus.json, for the static page, and exits.
 package main
 
 import (
@@ -145,6 +148,7 @@ func main() {
 	}
 	port := flag.Int("port", defaultPort, "port for the page (or set PORT)")
 	ext := flag.String("ext", "", "comma-separated file extensions to search, such as .py,.cpp (default: every text file)")
+	corpus := flag.Bool("corpus", false, "write corpus.txt and corpus.json for the static page, then exit")
 	flag.Parse()
 	if flag.NArg() != 1 {
 		fmt.Fprintln(os.Stderr, "usage: go run . [-port 8010] [-ext .py] /path/to/repo")
@@ -158,6 +162,12 @@ func main() {
 	}
 	files := loadRepo()
 	log.Printf("%s: %d files", repo, len(files))
+	if *corpus {
+		if err := writeCorpus(files); err != nil {
+			log.Fatal(err)
+		}
+		return
+	}
 
 	http.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -326,6 +336,27 @@ func joinFiles(files []file) (string, []int, []int) {
 		}
 	}
 	return b.String(), lineFile, lineNo
+}
+
+// writeCorpus saves the text every query scores, and what it came from, so
+// the static page can run trim-1 (as wasm) without the server.
+func writeCorpus(files []file) error {
+	ctx, lineFile, _ := joinFiles(files)
+	if err := os.WriteFile("corpus.txt", []byte(ctx), 0o644); err != nil {
+		return err
+	}
+	commit, uncommitted := gitInfo()
+	b, err := json.MarshalIndent(map[string]any{
+		"repo":   RepoInfo{Path: filepath.Base(repo), Commit: commit, Uncommitted: uncommitted, Extensions: exts},
+		"input":  Input{Files: len(files), Lines: len(lineFile), Bytes: len(ctx)},
+		"policy": trim.Points[trim.DefaultPoint],
+		"point":  trim.DefaultPoint,
+	}, "", "  ")
+	if err != nil {
+		return err
+	}
+	log.Printf("wrote corpus.txt (%d files, %d lines, %d bytes) and corpus.json", len(files), len(lineFile), len(ctx))
+	return os.WriteFile("corpus.json", b, 0o644)
 }
 
 var markerRe = regexp.MustCompile(`^[ \t]*… (\d+) lines? …[ \t\r]*$`)

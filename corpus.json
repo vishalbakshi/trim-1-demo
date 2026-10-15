@@ -1,0 +1,28 @@
+{
+  "input": {
+    "files": 110,
+    "lines": 11174,
+    "bytes": 392173
+  },
+  "point": "balanced",
+  "policy": {
+    "Floor": 0.008,
+    "TopK": 3,
+    "Context": 1,
+    "Headers": 1,
+    "Gap": 2,
+    "MinChars": 2000,
+    "MinCut": 0.1
+  },
+  "repo": {
+    "path": "ColBERT",
+    "commit": "cc4f3dc91c0b45d2d08c251d9d95178285c65f1c",
+    "uncommitted_changes": false,
+    "extensions": [
+      ".py",
+      ".cpp",
+      ".cu",
+      ".md"
+    ]
+  }
+}

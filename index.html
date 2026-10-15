@@ -31,7 +31,7 @@ trim --query "why does the build fail" build.log
 <label>Previous traces: <select id="history"><option value="">Load a previous trace…</option></select></label>
 </p>
 
-<p id="static" hidden>This is a static copy, so it can only show saved traces. To run new queries, run the server locally (see the <a href="https://github.com/vishalbakshi/trim-1-demo">README</a>).</p>
+<p id="static" hidden>This is a static copy. Queries run in your browser: trim-1 is compiled to WebAssembly (<code>trim.wasm</code>) and scores <code>corpus.txt</code>, the same joined text the server builds. Nothing is saved. To save traces, run the server locally (see the <a href="https://github.com/vishalbakshi/trim-1-demo">README</a>).</p>
 
 <form id="ask">
 <p>
@@ -160,6 +160,7 @@ $("history").addEventListener("change", async (e) => {
 $("ask").addEventListener("submit", async (e) => {
   e.preventDefault();
   $("status").textContent = "Running…";
+  if (local) { runLocal($("query").value.trim()); return; }
   const res = await fetch("ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: $("query").value }) });
   const t = await res.json();
   if (!res.ok) { $("status").textContent = `Error: ${t.error}`; return; }
@@ -167,6 +168,63 @@ $("ask").addEventListener("submit", async (e) => {
   show(t);
   loadHistory(`traces/${t.started_at.slice(0, 10)}/${t.id}.json`);
 });
+
+// Static mode: trim-1 runs in the page as wasm. local is the promise of
+// {corpus, info, picks} once trim.wasm and the corpus have loaded.
+let local = null;
+
+async function loadLocal() {
+  const start = performance.now();
+  $("info").textContent = "Loading trim-1 (trim.wasm, 4.5 MB) and the ColBERT text…";
+  await new Promise((ok, fail) => {
+    const s = document.createElement("script");
+    s.src = "wasm_exec.js";
+    s.onload = ok;
+    s.onerror = fail;
+    document.head.append(s);
+  });
+  const go = new Go();
+  const [wasm, corpus, info, picks] = await Promise.all([
+    WebAssembly.instantiateStreaming(fetch("trim.wasm"), go.importObject),
+    fetch("corpus.txt").then((r) => r.text()),
+    fetch("corpus.json").then((r) => r.json()),
+    fetch("picks.json").then((r) => r.json()),
+  ]);
+  go.run(wasm.instance); // sets trimScore and trimModelInfo, then waits
+  const loadMs = Math.round(performance.now() - start);
+  describe(info.repo.path, info.repo.extensions, info.input.files);
+  $("status").textContent = `trim-1 loaded in your browser in ${loadMs} ms.`;
+  return { corpus, info, picks, loadMs };
+}
+
+// runLocal scores the corpus in the page and shows the result in the same
+// shape as a server trace (raw, input, timings, reference_lines).
+async function runLocal(query) {
+  const { corpus, info, picks, loadMs } = await local;
+  await new Promise((r) => setTimeout(r, 0)); // let "Running…" show before the page blocks
+  const start = performance.now();
+  const r = trimScore(corpus, query);
+  const scoreMs = Math.round((performance.now() - start) * 10) / 10;
+  if (r.error) { $("status").textContent = `Error: ${r.error}`; return; }
+  // The corpus ends with "\n", so Score's last line is the empty piece after it.
+  const n = info.input.lines;
+  const lines = r.lines.split("\n").slice(0, n);
+  const t = {
+    trace_version: 2, started_at: new Date().toISOString(), query, point: info.point, policy: info.policy,
+    model: trimModelInfo(), runtime: "browser (wasm)", repo: info.repo, input: info.input,
+    timings: { load_ms: loadMs, score_ms: scoreMs },
+    raw: { lines, scores: Array.from(r.scores.subarray(0, n)) },
+  };
+  const ref = picks.queries[query];
+  if (ref) {
+    // A picked line's text, found by its file's header line.
+    const headerAt = new Map();
+    lines.forEach((l, i) => { const h = l.match(/^==> (.*) <==$/); if (h) headerAt.set(h[1], i); });
+    t.reference_lines = { by: picks.by, lines: ref.map(([path, line]) => ({ path, line, text: headerAt.has(path) ? lines[headerAt.get(path) + line] : "" })) };
+  }
+  $("status").textContent = `Scored ${n.toLocaleString()} lines in ${scoreMs} ms, in your browser (trim-1 loaded in ${loadMs} ms). Not saved.`;
+  show(t);
+}
 
 (async () => {
   loadHistory();
@@ -177,9 +235,9 @@ $("ask").addEventListener("submit", async (e) => {
     if (res.ok) info = await res.json();
   } catch {}
   if (!info) {
-    $("info").textContent = "";
     $("static").hidden = false;
-    $("ask").hidden = true;
+    local = loadLocal();
+    local.catch((err) => { $("info").textContent = `Couldn't load trim-1 in the browser: ${err}`; $("ask").hidden = true; });
     return;
   }
   describe(info.repo, info.extensions, info.files);
