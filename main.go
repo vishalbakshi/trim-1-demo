@@ -32,17 +32,21 @@ import (
 //go:embed index.html
 var page []byte
 
+//go:embed index-v1.html
+var pageV1 []byte
+
 const (
-	traceVersion = 1
+	traceVersion = 2  // 2 added raw
 	topFiles     = 20 // files listed in a trace, by best line score
 	topLines     = 30 // lines listed in a trace, by score
 )
 
 var (
-	repo    string
-	exts    []string // empty means every text file
-	traces  = "traces"
-	runLock sync.Mutex // one question at a time, so timings aren't shared with another run
+	repo     string
+	exts     []string // empty means every text file
+	traces   = "traces"
+	manifest = filepath.Join(traces, "index.json") // every trace, newest first, for the static page
+	runLock  sync.Mutex                            // one question at a time, so timings aren't shared with another run
 )
 
 type file struct {
@@ -51,20 +55,22 @@ type file struct {
 }
 
 type Trace struct {
-	Version    int       `json:"trace_version"`
-	ID         string    `json:"id"`
-	StartedAt  string    `json:"started_at"`
-	Query      string    `json:"query"`
-	Point      string    `json:"point"`
-	Policy     any       `json:"policy"`
-	Model      string    `json:"model"`
-	Repo       RepoInfo  `json:"repo"`
-	Input      Input     `json:"input"`
-	Timings    Timings   `json:"timings"`
-	Files      []FileHit `json:"files"`
-	Lines      []LineHit `json:"lines"`
-	Output     Output    `json:"output"`
-	ReviewNote string    `json:"review_notes"`
+	Version    int        `json:"trace_version"`
+	ID         string     `json:"id"`
+	StartedAt  string     `json:"started_at"`
+	Query      string     `json:"query"`
+	Point      string     `json:"point"`
+	Policy     any        `json:"policy"`
+	Model      string     `json:"model"`
+	Repo       RepoInfo   `json:"repo"`
+	Input      Input      `json:"input"`
+	Timings    Timings    `json:"timings"`
+	Files      []FileHit  `json:"files"`
+	Lines      []LineHit  `json:"lines"`
+	Output     Output     `json:"output"`
+	Raw        Raw        `json:"raw"`
+	Reference  *Reference `json:"reference_lines,omitempty"`
+	ReviewNote string     `json:"review_notes"`
 }
 
 type RepoInfo struct {
@@ -72,6 +78,26 @@ type RepoInfo struct {
 	Commit      string   `json:"commit,omitempty"`
 	Uncommitted bool     `json:"uncommitted_changes"`
 	Extensions  []string `json:"extensions"`
+}
+
+// Raw is trim.Score's output as it came back: the context's lines and one
+// score per line, in the same order.
+type Raw struct {
+	Lines  []string  `json:"lines"`
+	Scores []float64 `json:"scores"`
+}
+
+// Reference is the lines someone picked as the ones needed to answer the
+// query, from picks.json. The v2 page highlights them.
+type Reference struct {
+	By    string    `json:"by"`
+	Lines []RefLine `json:"lines"`
+}
+
+type RefLine struct {
+	Path string `json:"path"`
+	Line int    `json:"line"`
+	Text string `json:"text"`
 }
 
 type Input struct {
@@ -137,6 +163,10 @@ func main() {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		w.Write(page)
 	})
+	http.HandleFunc("GET /v1", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Write(pageV1)
+	})
 	http.HandleFunc("GET /info", func(w http.ResponseWriter, r *http.Request) {
 		info, _ := trim.ModelInfo()
 		points := []string{}
@@ -148,6 +178,13 @@ func main() {
 	})
 	http.HandleFunc("GET /traces", func(w http.ResponseWriter, r *http.Request) {
 		sendJSON(w, 200, listTraces())
+	})
+	// The same list as a file, so a static copy of the page (GitHub Pages) can find the traces.
+	if err := writeManifest(); err != nil {
+		log.Printf("writing %s: %v", manifest, err)
+	}
+	http.HandleFunc("GET /traces/index.json", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, manifest)
 	})
 	http.HandleFunc("GET /traces/{day}/{name}", func(w http.ResponseWriter, r *http.Request) {
 		day, name := r.PathValue("day"), r.PathValue("name")
@@ -195,7 +232,7 @@ func run(query, point string) (*Trace, error) {
 	t.Input = Input{Files: len(files), Lines: len(lineFile), Bytes: len(ctx)}
 
 	s := time.Now()
-	_, scores, err := trim.Score(ctx, query)
+	lines, scores, err := trim.Score(ctx, query)
 	if err != nil {
 		return nil, err
 	}
@@ -237,6 +274,9 @@ func run(query, point string) (*Trace, error) {
 		t.Lines = append(t.Lines, LineHit{Rank: r + 1, Path: files[lineFile[i]].Path, Line: lineNo[i], Score: scores[i], Text: files[lineFile[i]].Lines[lineNo[i]-1]})
 	}
 
+	// The context ends with "\n", so Score's last line is the empty piece after it.
+	t.Raw = Raw{Lines: lines[:len(lineFile)], Scores: scores[:len(lineFile)]}
+	t.Reference = loadPicks(query, files)
 	t.Output = Output{Unchanged: res.Unchanged, Reason: res.Reason, KeptLines: res.KeptLines, RemovedLines: res.RemovedLines, Bytes: len(res.Output), Text: res.Output}
 	return t, saveTrace(t)
 }
@@ -315,6 +355,37 @@ func keptMask(res trim.Result, n int) []bool {
 	return keep
 }
 
+// loadPicks returns the picked lines for query from picks.json, or nil if it
+// has none. picks.json maps each query to [path, line] pairs.
+func loadPicks(query string, files []file) *Reference {
+	b, err := os.ReadFile("picks.json")
+	if err != nil {
+		return nil
+	}
+	var picks struct {
+		By      string
+		Queries map[string][][2]any
+	}
+	if json.Unmarshal(b, &picks) != nil || picks.Queries[query] == nil {
+		return nil
+	}
+	byPath := map[string]file{}
+	for _, f := range files {
+		byPath[f.Path] = f
+	}
+	ref := &Reference{By: picks.By}
+	for _, pl := range picks.Queries[query] {
+		path, _ := pl[0].(string)
+		n, _ := pl[1].(float64)
+		rl := RefLine{Path: path, Line: int(n)}
+		if f, ok := byPath[path]; ok && rl.Line >= 1 && rl.Line <= len(f.Lines) {
+			rl.Text = f.Lines[rl.Line-1]
+		}
+		ref.Lines = append(ref.Lines, rl)
+	}
+	return ref
+}
+
 func gitInfo() (string, bool) {
 	commit, err := exec.Command("git", "-C", repo, "rev-parse", "HEAD").Output()
 	if err != nil {
@@ -350,7 +421,21 @@ func saveTrace(t *Trace) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path, b, 0o644)
+	if err := os.WriteFile(path, b, 0o644); err != nil {
+		return err
+	}
+	return writeManifest()
+}
+
+func writeManifest() error {
+	if err := os.MkdirAll(traces, 0o755); err != nil {
+		return err
+	}
+	b, err := json.MarshalIndent(listTraces(), "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(manifest, b, 0o644)
 }
 
 // listTraces returns the saved traces, newest first.
@@ -367,7 +452,7 @@ func listTraces() []map[string]string {
 		if err != nil || json.Unmarshal(b, &t) != nil {
 			continue
 		}
-		out = append(out, map[string]string{"url": "/" + filepath.ToSlash(p), "query": t.Query, "point": t.Point, "started_at": t.StartedAt})
+		out = append(out, map[string]string{"url": filepath.ToSlash(p), "query": t.Query, "point": t.Point, "started_at": t.StartedAt})
 	}
 	return out
 }

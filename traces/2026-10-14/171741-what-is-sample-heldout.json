@@ -1,0 +1,450 @@
+{
+  "trace_version": 1,
+  "id": "171741-what-is-sample-heldout",
+  "started_at": "2026-10-14T17:17:41-07:00",
+  "query": "What is sample_heldout?",
+  "point": "balanced",
+  "policy": {
+    "Floor": 0.008,
+    "TopK": 3,
+    "Context": 1,
+    "Headers": 1,
+    "Gap": 2,
+    "MinChars": 2000,
+    "MinCut": 0.1
+  },
+  "model": "712 trees, 44144 nodes, 67 features, 1245358 bytes",
+  "repo": {
+    "path": "/Users/Vishal/Documents/ColBERT",
+    "commit": "cc4f3dc91c0b45d2d08c251d9d95178285c65f1c",
+    "uncommitted_changes": false,
+    "extensions": [
+      ".py",
+      ".cpp",
+      ".cu",
+      ".md"
+    ]
+  },
+  "input": {
+    "files": 110,
+    "lines": 11174,
+    "bytes": 392173
+  },
+  "timings": {
+    "load_ms": 85.755,
+    "score_ms": 198.51,
+    "compress_ms": 191.475
+  },
+  "files": [
+    {
+      "rank": 1,
+      "path": "colbert/indexing/collection_indexer.py",
+      "best_score": 0.9532206118167224,
+      "best_line": 278,
+      "lines": 526,
+      "kept_lines": 179
+    },
+    {
+      "rank": 2,
+      "path": "utility/utils/dpr.py",
+      "best_score": 0.12843122127770695,
+      "best_line": 157,
+      "lines": 236,
+      "kept_lines": 116
+    },
+    {
+      "rank": 3,
+      "path": "utility/supervision/self_training.py",
+      "best_score": 0.09332029582763925,
+      "best_line": 29,
+      "lines": 123,
+      "kept_lines": 8
+    },
+    {
+      "rank": 4,
+      "path": "utility/supervision/triples.py",
+      "best_score": 0.08612743307011934,
+      "best_line": 40,
+      "lines": 150,
+      "kept_lines": 25
+    },
+    {
+      "rank": 5,
+      "path": "colbert/search/strided_tensor_core.py",
+      "best_score": 0.05892922963109317,
+      "best_line": 100,
+      "lines": 130,
+      "kept_lines": 7
+    },
+    {
+      "rank": 6,
+      "path": "utility/utils/save_metadata.py",
+      "best_score": 0.04468499910376637,
+      "best_line": 21,
+      "lines": 60,
+      "kept_lines": 43
+    },
+    {
+      "rank": 7,
+      "path": "colbert/infra/utilities/minicorpus.py",
+      "best_score": 0.03494830566172956,
+      "best_line": 12,
+      "lines": 64,
+      "kept_lines": 30
+    },
+    {
+      "rank": 8,
+      "path": "baleen/condenser/model.py",
+      "best_score": 0.02905552881865613,
+      "best_line": 44,
+      "lines": 79,
+      "kept_lines": 24
+    },
+    {
+      "rank": 9,
+      "path": "ROADMAP.md",
+      "best_score": 0.02670209235240386,
+      "best_line": 35,
+      "lines": 36,
+      "kept_lines": 6
+    },
+    {
+      "rank": 10,
+      "path": "utility/utils/qa_loaders.py",
+      "best_score": 0.02612277938022958,
+      "best_line": 18,
+      "lines": 33,
+      "kept_lines": 17
+    },
+    {
+      "rank": 11,
+      "path": "utility/preprocess/queries_split.py",
+      "best_score": 0.02600683036870244,
+      "best_line": 46,
+      "lines": 81,
+      "kept_lines": 10
+    },
+    {
+      "rank": 12,
+      "path": "baleen/condenser/condense.py",
+      "best_score": 0.022065844648340344,
+      "best_line": 132,
+      "lines": 141,
+      "kept_lines": 24
+    },
+    {
+      "rank": 13,
+      "path": "colbert/utilities/minicorpus.py",
+      "best_score": 0.021867629745253674,
+      "best_line": 14,
+      "lines": 66,
+      "kept_lines": 30
+    },
+    {
+      "rank": 14,
+      "path": "baleen/condenser/tokenization.py",
+      "best_score": 0.018384475471637938,
+      "best_line": 114,
+      "lines": 118,
+      "kept_lines": 18
+    },
+    {
+      "rank": 15,
+      "path": "baleen/engine.py",
+      "best_score": 0.017651122678213654,
+      "best_line": 12,
+      "lines": 58,
+      "kept_lines": 22
+    },
+    {
+      "rank": 16,
+      "path": "colbert/index_updater.py",
+      "best_score": 0.0169455532901201,
+      "best_line": 35,
+      "lines": 543,
+      "kept_lines": 9
+    },
+    {
+      "rank": 17,
+      "path": "README.md",
+      "best_score": 0.016655794059838032,
+      "best_line": 203,
+      "lines": 242,
+      "kept_lines": 5
+    },
+    {
+      "rank": 18,
+      "path": "colbert/indexing/codecs/residual.py",
+      "best_score": 0.01596267022815945,
+      "best_line": 248,
+      "lines": 276,
+      "kept_lines": 24
+    },
+    {
+      "rank": 19,
+      "path": "colbert/tests/tokenizers_test.py",
+      "best_score": 0.015026140244040014,
+      "best_line": 116,
+      "lines": 161,
+      "kept_lines": 8
+    },
+    {
+      "rank": 20,
+      "path": "colbert/data/examples.py",
+      "best_score": 0.011907450400854567,
+      "best_line": 49,
+      "lines": 82,
+      "kept_lines": 3
+    }
+  ],
+  "lines": [
+    {
+      "rank": 1,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 278,
+      "score": 0.9532206118167224,
+      "text": "        return sample, sample_heldout"
+    },
+    {
+      "rank": 2,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 344,
+      "score": 0.5292835669107258,
+      "text": "        # sample_avg_residual = (sample - sample_reconstruct).mean(dim=0)"
+    },
+    {
+      "rank": 3,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 324,
+      "score": 0.36395424948898536,
+      "text": "        avg_residual = torch.abs(heldout_avg_residual).mean(dim=0).cpu()"
+    },
+    {
+      "rank": 4,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 230,
+      "score": 0.3378997605900045,
+      "text": "        sample, heldout = self._concatenate_and_split_sample()"
+    },
+    {
+      "rank": 5,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 268,
+      "score": 0.2866457006301569,
+      "text": "        sample = sample[torch.randperm(sample.size(0))]"
+    },
+    {
+      "rank": 6,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 317,
+      "score": 0.2685722763147037,
+      "text": "        heldout_reconstruct = compressor.compress_into_codes(heldout, out_device='cuda' if self.use_gpu else 'cpu')"
+    },
+    {
+      "rank": 7,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 328,
+      "score": 0.2528093715909105,
+      "text": "        quantiles = torch.arange(0, num_options, device=heldout_avg_residual.device) * (1 / num_options)"
+    },
+    {
+      "rank": 8,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 274,
+      "score": 0.23682697993745183,
+      "text": "        sample, sample_heldout = sample.split([sample.size(0) - heldout_size, heldout_size], dim=0)"
+    },
+    {
+      "rank": 9,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 331,
+      "score": 0.23189603586534804,
+      "text": "        bucket_cutoffs = heldout_avg_residual.float().quantile(bucket_cutoffs_quantiles)"
+    },
+    {
+      "rank": 10,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 318,
+      "score": 0.2282255724509856,
+      "text": "        heldout_reconstruct = compressor.lookup_centroids(heldout_reconstruct, out_device='cuda' if self.use_gpu else 'cpu')"
+    },
+    {
+      "rank": 11,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 273,
+      "score": 0.20141408164656105,
+      "text": "        heldout_size = int(min(heldout_fraction * sample.size(0), 50_000))"
+    },
+    {
+      "rank": 12,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 332,
+      "score": 0.18341999797314962,
+      "text": "        bucket_weights = heldout_avg_residual.float().quantile(bucket_weights_quantiles)"
+    },
+    {
+      "rank": 13,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 341,
+      "score": 0.17279261933179335,
+      "text": "        # EVENTAULLY: Compare the above with non-heldout sample. If too different, we can do better!"
+    },
+    {
+      "rank": 14,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 282,
+      "score": 0.15128455988136327,
+      "text": "            torch.cuda.empty_cache()"
+    },
+    {
+      "rank": 15,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 267,
+      "score": 0.14918530997677087,
+      "text": "        # Shuffle and split out a 5% \"heldout\" sub-sample [up to 50k elements]"
+    },
+    {
+      "rank": 16,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 272,
+      "score": 0.13673697684923125,
+      "text": "        heldout_fraction = 0.05"
+    },
+    {
+      "rank": 17,
+      "path": "utility/utils/dpr.py",
+      "line": 157,
+      "score": 0.12843122127770695,
+      "text": "            logger.warning('%s only tokenizes! Skipping annotators: %s' %"
+    },
+    {
+      "rank": 18,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 263,
+      "score": 0.11966850646270172,
+      "text": "        assert endpos == sample.size(0), (endpos, sample.size())"
+    },
+    {
+      "rank": 19,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 276,
+      "score": 0.11066596529354504,
+      "text": "        print_memory_stats(f'***4*** \\t RANK:{self.rank}')"
+    },
+    {
+      "rank": 20,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 280,
+      "score": 0.1046295137181777,
+      "text": "    def _train_kmeans(self, sample, shared_lists):"
+    },
+    {
+      "rank": 21,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 322,
+      "score": 0.10118943014446069,
+      "text": "            heldout_avg_residual = heldout - heldout_reconstruct"
+    },
+    {
+      "rank": 22,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 281,
+      "score": 0.09713412317999781,
+      "text": "        if self.use_gpu:"
+    },
+    {
+      "rank": 23,
+      "path": "utility/supervision/self_training.py",
+      "line": 29,
+      "score": 0.09332029582763925,
+      "text": "    \"\"\""
+    },
+    {
+      "rank": 24,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 169,
+      "score": 0.09093680869732648,
+      "text": "                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cpu()"
+    },
+    {
+      "rank": 25,
+      "path": "utility/supervision/triples.py",
+      "line": 40,
+      "score": 0.08612743307011934,
+      "text": "    \"\"\""
+    },
+    {
+      "rank": 26,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 159,
+      "score": 0.08385422702238814,
+      "text": "                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cpu()"
+    },
+    {
+      "rank": 27,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 320,
+      "score": 0.08346720775969621,
+      "text": "            heldout_avg_residual = heldout.cuda() - heldout_reconstruct"
+    },
+    {
+      "rank": 28,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 288,
+      "score": 0.07632411677805226,
+      "text": "        if do_fork_for_faiss:"
+    },
+    {
+      "rank": 29,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 314,
+      "score": 0.07544175344506512,
+      "text": "    def _compute_avg_residual(self, centroids, heldout):"
+    },
+    {
+      "rank": 30,
+      "path": "colbert/indexing/collection_indexer.py",
+      "line": 151,
+      "score": 0.0748711736663134,
+      "text": "                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cuda()"
+    }
+  ],
+  "output": {
+    "unchanged": false,
+    "kept_lines": 655,
+    "removed_lines": 10519,
+    "bytes": 28260,
+    "text": "… 292 lines …\n    # use 4 gpus (e.g. four A100s, but you can use fewer by changing nway,accumsteps,bsize).\n    with Run().context(RunConfig(nranks=4)):\n… 3 lines …\n\n        config = ColBERTConfig(bsize=32, lr=1e-05, warmup=20_000, doc_maxlen=180, dim=128, attend_to_mask_tokens=False, nway=64, accumsteps=1, similarity='cosine', use_ib_negatives=True)\n        trainer = Trainer(triples=triples, queries=queries, collection=collection, config=config)\n… 69 lines …\n## Long-Term Goals: Feature Requests (~3 months)\n\n- Resuming training from checkpoint ([#307](https://github.com/stanford-futuredata/ColBERT/issues/307)).\n- Allow string pids ([#326](https://github.com/stanford-futuredata/ColBERT/pull/326)).\n- Explore [batch size handling options](https://github.com/stanford-futuredata/ColBERT/blob/8627585ad290c21720eaa54e325e7c8c301d15f6/colbert/search/index_storage.py#L121) to resolve OOM during search.\n- etc.\n… 74 lines …\n        with torch.inference_mode():\n… 5 lines …\n            # print(backs)\n… 14 lines …\n\n            pids = [[pid] * scores.size(1) for pid in actual_ranking]\n            pids = flatten(pids)\n\n            sids = [list(range(scores.size(1))) for pid in actual_ranking]\n            sids = flatten(sids)\n… 6 lines …\n\n            preds = [(pid, sid) for pid, sid in zip(topk_pids, topk_sids)]\n\n… 11 lines …\n        # print(passages)\n… 3 lines …\n        with self.amp.context():\n… 5 lines …\n\n            preds_L3x = [x for score, x in preds if score > min(0, preds[1][0] - 1e-10)] # Take at least 2!\n            preds = [x for score, x in preds if score > 0]\n\n            earliest_pids = f7([pid for pid, _ in preds_L3x])[:4]  # Take at most 4 docs.\n            preds_L3x = [(pid, sid) for pid, sid in preds_L3x if pid in earliest_pids]\n\n            assert len(preds_L3x) >= 2\n            assert len(f7([pid for pid, _ in preds_L3x])) <= 4\n\n        return preds, preds_L3x\n==> baleen/condenser/model.py <==\n… 7 lines …\n    def __init__(self, config, learn_labels=False):\n… 3 lines …\n\n        self.relevance = nn.Linear(config.hidden_size, 1)\n\n… 25 lines …\n    def _mask_2d_index(self, scores, mask):\n        bsize, maxlen = scores.size()\n        bsize_, maxlen_ = mask.size()\n\n        assert bsize == bsize_, (scores.size(), mask.size())\n        assert maxlen == maxlen_, (scores.size(), mask.size())\n\n… 4 lines …\n        # Get 2D indexes\n        rowidxs, nnzs = torch.unique(torch.nonzero(mask, as_tuple=False)[:, 0], return_counts=True)\n        max_nnzs = nnzs.max().item()\n\n        rows = [[-1] * max_nnzs for _ in range(bsize)]\n        offset = 0\n… 7 lines …\n        # Index with the 2D indexes\n… 4 lines …\n    def _2d_index(self, embeddings, positions):\n        bsize, maxlen, hdim = embeddings.size()\n        bsize_, max_out = positions.size()\n\n        assert bsize == bsize_\n        assert positions.max() < maxlen\n… 5 lines …\n==> baleen/condenser/tokenization.py <==\n… 13 lines …\n    def tensorize(self, questions, passages):\n        query_lengths = self.tok(questions, padding='longest', return_tensors='pt').attention_mask.sum(-1)\n\n        encoding = self.tok(questions, passages, padding='longest', truncation='longest_first',\n                            return_tensors='pt', max_length=self.total_maxlen, add_special_tokens=True)\n… 12 lines …\n    def all_word_positions(self, encoding, index):\n        words = encoding.word_ids(index)\n        offsets = [position\n                   for position, (last_word_number, current_word_number) in enumerate(zip([-1] + words, words))\n                   if last_word_number != current_word_number]\n\n        endpositions = offsets[1:] + [len(words)]\n\n… 26 lines …\n        # print(encoding, index, text, tokens_offset, tokens_endpos, len(encoding.tokens(index)))\n… 39 lines …\n    def _candidize(self):\n… 7 lines …\n        candidates = torch.tensor(all_candidates)\n        assert candidates.size() == (bsize, maxcands, 2), (candidates.size(), (bsize, maxcands, 2), (self.questions, self.passages))\n\n… 3 lines …\n==> baleen/engine.py <==\n… 10 lines …\n    def search(self, query, num_hops, depth=100, verbose=False):\n        assert depth % num_hops == 0, f\"depth={depth} must be divisible by num_hops={num_hops}.\"\n        k = depth // num_hops\n… 11 lines …\n        for hop_idx in range(0, num_hops):\n            ranking = list(zip(*searcher.search(query, context=context, k=depth)))\n            ranking_ = []\n\n            facts_pids = set([pid for pid, _ in facts])\n\n            for pid, rank, score in ranking:\n                # print(f'[{score}] \\t\\t {searcher.collection[pid]}')\n                if len(ranking_) < k and pid not in facts_pids:\n                    ranking_.append(pid)\n                \n                if len(pids_bag) < k * (hop_idx+1):\n                    pids_bag.add(pid)\n            \n            stage1_preds, facts, stage2_L3x = condenser.condense(query, backs=facts, ranking=ranking_)\n            context = ' [SEP] '.join([collectionX.get((pid, sid), '') for pid, sid in facts])\n\n        assert len(pids_bag) == depth\n\n… 56 lines …\n==> baleen/utils/annotate.py <==\n… 23 lines …\n            for line in file_tqdm(f):\n… 4 lines …\n\n                line_ = [qid, pid, *other, label]\n                line_ = '\\t'.join(map(str, line_)) + '\\n'\n… 186 lines …\n==> colbert/data/examples.py <==\n… 47 lines …\n    def save(self, new_path):\n        assert 'json' in new_path.strip('/').split('/')[-1].split('.'), \"TODO: Support .json[l] too.\"\n\n… 798 lines …\n# For testing writing into new chunks, can set DEFAULT_CHUNKSIZE smaller (e.g. 1 or 2)\n… 3 lines …\nclass IndexUpdater:\n… 5 lines …\n\n    Sample usage:\n\n… 25 lines …\n        # variables to track removal / append of passages\n… 15 lines …\n        if invalid_pids:\n            raise ValueError(\"Invalid PIDs\", invalid_pids)\n\n… 463 lines …\n==> colbert/indexer.py <==\n… 59 lines …\n    def index(self, name, collection, overwrite=False):\n        assert overwrite in [True, False, 'reuse', 'resume', \"force_silent_overwrite\"]\n\n… 283 lines …\n        # given n bits per lookup\n… 90 lines …\n    def compress(self, embs):\n        codes, residuals = [], []\n\n        for batch in embs.split(1 << 18):\n            if self.use_gpu:\n… 33 lines …\n        \"\"\"\n            EVENTUALLY: Fusing the kernels or otherwise avoiding materalizing the entire matrix before max(dim=0)\n                        seems like it would help here a lot.\n… 15 lines …\n        \"\"\"\n            Handles multi-dimensional codes too.\n\n            EVENTUALLY: The .split() below should happen on a flat view.\n        \"\"\"\n… 12 lines …\n    def decompress(self, compressed_embs: Embeddings):\n… 6 lines …\n        D = []\n        for codes_, residuals_ in zip(codes.split(1 << 15), residuals.split(1 << 15)):\n            if self.use_gpu:\n… 12 lines …\n                # TODO: Remove dead code\n… 7 lines …\n            if self.use_gpu:\n                D_ = torch.nn.functional.normalize(centroids_, p=2, dim=-1).half()\n            else:\n                D_ = torch.nn.functional.normalize(centroids_.to(torch.float32), p=2, dim=-1)\n            D.append(D_)\n… 249 lines …\nclass CollectionIndexer():\n… 43 lines …\n    def setup(self):\n… 18 lines …\n        # Saves sampled passages and embeddings for training k-means centroids later \n        sampled_pids = self._sample_pids()\n        avg_doclen_est = self._sample_embeddings(sampled_pids)\n\n        # Select the number of partitions\n… 10 lines …\n    def _sample_pids(self):\n        num_passages = len(self.collection)\n\n… 7 lines …\n        # sampled_pids = int(2 ** np.floor(np.log2(1 + sampled_pids)))\n        sampled_pids = min(1 + int(sampled_pids), num_passages)\n\n        sampled_pids = random.sample(range(num_passages), sampled_pids)\n        if self.verbose > 1:\n            Run().print_main(f\"# of sampled PIDs = {len(sampled_pids)} \\t sampled_pids[:3] = {sampled_pids[:3]}\")\n\n        return set(sampled_pids)\n\n    def _sample_embeddings(self, sampled_pids):\n        local_pids = self.collection.enumerate(rank=self.rank)\n        local_sample = [passage for pid, passage in local_pids if pid in sampled_pids]\n\n        local_sample_embs, doclens = self.encoder.encode_passages(local_sample)\n\n        if torch.cuda.is_available():\n            if torch.distributed.is_available() and torch.distributed.is_initialized():\n                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cuda()\n                torch.distributed.all_reduce(self.num_sample_embs)\n\n… 3 lines …\n\n                nonzero_ranks = torch.tensor([float(len(local_sample) > 0)]).cuda()\n                torch.distributed.all_reduce(nonzero_ranks)\n            else:\n                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cuda()\n\n                avg_doclen_est = sum(doclens) / len(doclens) if doclens else 0\n                avg_doclen_est = torch.tensor([avg_doclen_est]).cuda()\n\n                nonzero_ranks = torch.tensor([float(len(local_sample) > 0)]).cuda()\n        else:\n            if torch.distributed.is_available() and torch.distributed.is_initialized():\n                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cpu()\n                torch.distributed.all_reduce(self.num_sample_embs)\n\n… 3 lines …\n\n                nonzero_ranks = torch.tensor([float(len(local_sample) > 0)]).cpu()\n                torch.distributed.all_reduce(nonzero_ranks)\n            else:\n                self.num_sample_embs = torch.tensor([local_sample_embs.size(0)]).cpu()\n\n                avg_doclen_est = sum(doclens) / len(doclens) if doclens else 0\n                avg_doclen_est = torch.tensor([avg_doclen_est]).cpu()\n\n                nonzero_ranks = torch.tensor([float(len(local_sample) > 0)]).cpu()\n\n        avg_doclen_est = avg_doclen_est.item() / nonzero_ranks.item()\n        self.avg_doclen_est = avg_doclen_est\n\n        Run().print(f'avg_doclen_est = {avg_doclen_est} \\t len(local_sample) = {len(local_sample):,}')\n\n        torch.save(local_sample_embs.half(), os.path.join(self.config.index_path_, f'sample.{self.rank}.pt'))\n\n… 17 lines …\n                # TODO: Verify config matches\n… 25 lines …\n    def train(self, shared_lists):\n        if self.rank > 0:\n            return\n\n        sample, heldout = self._concatenate_and_split_sample()\n\n        centroids = self._train_kmeans(sample, shared_lists)\n\n        print_memory_stats(f'RANK:{self.rank}')\n        del sample\n\n        bucket_cutoffs, bucket_weights, avg_residual = self._compute_avg_residual(centroids, heldout)\n\n… 3 lines …\n        # Compute and save codec into avg_residual.pt, buckets.pt and centroids.pt\n… 3 lines …\n\n    def _concatenate_and_split_sample(self):\n        print_memory_stats(f'***1*** \\t RANK:{self.rank}')\n\n        # TODO: Allocate a float16 array. Load the samples from disk, copy to array.\n        sample = torch.empty(self.num_sample_embs, self.config.dim, dtype=torch.float16)\n\n        offset = 0\n        for r in range(self.nranks):\n            sub_sample_path = os.path.join(self.config.index_path_, f'sample.{r}.pt')\n            sub_sample = torch.load(sub_sample_path)\n            os.remove(sub_sample_path)\n\n            endpos = offset + sub_sample.size(0)\n            sample[offset:endpos] = sub_sample\n            offset = endpos\n\n        assert endpos == sample.size(0), (endpos, sample.size())\n\n        print_memory_stats(f'***2*** \\t RANK:{self.rank}')\n\n        # Shuffle and split out a 5% \"heldout\" sub-sample [up to 50k elements]\n        sample = sample[torch.randperm(sample.size(0))]\n\n        print_memory_stats(f'***3*** \\t RANK:{self.rank}')\n\n        heldout_fraction = 0.05\n        heldout_size = int(min(heldout_fraction * sample.size(0), 50_000))\n        sample, sample_heldout = sample.split([sample.size(0) - heldout_size, heldout_size], dim=0)\n\n        print_memory_stats(f'***4*** \\t RANK:{self.rank}')\n\n        return sample, sample_heldout\n\n    def _train_kmeans(self, sample, shared_lists):\n        if self.use_gpu:\n            torch.cuda.empty_cache()\n\n        do_fork_for_faiss = False  # set to True to free faiss GPU-0 memory at the cost of one more copy of `sample`.\n\n        args_ = [self.config.dim, self.num_partitions, self.config.kmeans_niters]\n\n        if do_fork_for_faiss:\n            # For this to work reliably, write the sample to disk. Pickle may not handle >4GB of data.\n            # Delete the sample file after work is done.\n\n            shared_lists[0][0] = sample\n            return_value_queue = mp.Queue()\n\n… 7 lines …\n        else:\n            args_ = args_ + [[[sample]]]\n            centroids = compute_faiss_kmeans(*args_)\n\n        centroids = torch.nn.functional.normalize(centroids, dim=-1)\n        if self.use_gpu:\n… 5 lines …\n\n    def _compute_avg_residual(self, centroids, heldout):\n        compressor = ResidualCodec(config=self.config, centroids=centroids, avg_residual=None)\n\n        heldout_reconstruct = compressor.compress_into_codes(heldout, out_device='cuda' if self.use_gpu else 'cpu')\n        heldout_reconstruct = compressor.lookup_centroids(heldout_reconstruct, out_device='cuda' if self.use_gpu else 'cpu')\n        if self.use_gpu:\n            heldout_avg_residual = heldout.cuda() - heldout_reconstruct\n        else:\n            heldout_avg_residual = heldout - heldout_reconstruct\n\n        avg_residual = torch.abs(heldout_avg_residual).mean(dim=0).cpu()\n        print([round(x, 3) for x in avg_residual.squeeze().tolist()])\n\n        num_options = 2 ** self.config.nbits\n        quantiles = torch.arange(0, num_options, device=heldout_avg_residual.device) * (1 / num_options)\n        bucket_cutoffs_quantiles, bucket_weights_quantiles = quantiles[1:], quantiles + (0.5 / num_options)\n\n        bucket_cutoffs = heldout_avg_residual.float().quantile(bucket_cutoffs_quantiles)\n        bucket_weights = heldout_avg_residual.float().quantile(bucket_weights_quantiles)\n\n        if self.verbose > 2:\n            print_message(\n                f\"#> Got bucket_cutoffs_quantiles = {bucket_cutoffs_quantiles} and bucket_weights_quantiles = {bucket_weights_quantiles}\")\n            print_message(f\"#> Got bucket_cutoffs = {bucket_cutoffs} and bucket_weights = {bucket_weights}\")\n\n        return bucket_cutoffs, bucket_weights, avg_residual.mean()\n\n        # EVENTAULLY: Compare the above with non-heldout sample. If too different, we can do better!\n        # sample = sample[subsample_idxs]\n        # sample_reconstruct = get_centroids_for(centroids, sample)\n        # sample_avg_residual = (sample - sample_reconstruct).mean(dim=0)\n\n… 135 lines …\n        # Transforms centroid->embedding ivf to centroid->passage ivf\n… 18 lines …\ndef compute_faiss_kmeans(dim, num_partitions, kmeans_niters, shared_lists, return_value_queue=None):\n    use_gpu = torch.cuda.is_available()\n    kmeans = faiss.Kmeans(dim, num_partitions, niter=kmeans_niters, gpu=use_gpu, verbose=True, seed=123)\n\n    sample = shared_lists[0][0]\n    sample = sample.float().numpy()\n\n    kmeans.train(sample)\n\n… 13 lines …\n\n1. Consider saving/using heldout_avg_residual as a vector --- that is, using 128 averages!\n\n… 1111 lines …\n==> colbert/infra/utilities/create_triples.py <==\n… 24 lines …\n        for processing_idx, qid in enumerate(self.qid2rankings):\n            l = sample_for_query(qid, self.qid2rankings[qid], positives, depth, False, None)\n            NonEmptyQIDs += (len(l) > 0)\n            Triples.extend(l)\n\n… 23 lines …\n==> colbert/infra/utilities/minicorpus.py <==\n… 8 lines …\ndef sample_minicorpus(name, factor, topk=30, maxdev=3000):\n    \"\"\"\n    Factor:\n        * nano=1\n        * micro=10\n        * mini=100\n        * small=100 with topk=100\n… 16 lines …\n    # Sample NT and ND queries from each, keep only the top-k passages for those\n    sample_train = random.sample(list(qas_train.keys()), min(len(qas_train.keys()), 300*factor))\n    sample_dev = random.sample(list(qas_dev.keys()), min(len(qas_dev.keys()), maxdev, 30*factor))\n\n    train_pids = [pid for qid in sample_train for qpids in ranking_train[qid][:topk] for pid in qpids]\n    dev_pids = [pid for qid in sample_dev for qpids in ranking_dev[qid][:topk] for pid in qpids]\n\n    sample_pids = sorted(list(set(train_pids + dev_pids)))\n    print(f'len(sample_pids) = {len(sample_pids)}')\n\n    # Save the new query sets: train and dev\n… 4 lines …\n\n    new_train = Queries(data={qid: qas_train[qid] for qid in sample_train})\n    new_train.save(os.path.join(ROOT, 'train/questions.tsv'))\n    new_train.save_qas(os.path.join(ROOT, 'train/qas.json'))\n\n    new_dev = Queries(data={qid: qas_dev[qid] for qid in sample_dev})\n    new_dev.save(os.path.join(ROOT, 'dev/questions.tsv'))\n    new_dev.save_qas(os.path.join(ROOT, 'dev/qas.json'))\n\n    # Save the new collection\n… 6 lines …\nif __name__ == '__main__':\n    sample_minicorpus('medium', 150, topk=300)\n==> colbert/modeling/base_colbert.py <==\n… 1835 lines …\n==> colbert/search/segmented_lookup.cpp <==\n… 81 lines …\n    if (rc) {\n        fprintf(stderr, \"Unable to init mutex: %d\\n\", rc);\n    }\n… 35 lines …\n    if (rc) {\n        fprintf(stderr, \"Unable to destroy mutex: %d\\n\", rc);\n    }\n… 323 lines …\n    # # @profile\n… 18 lines …\ndef _select_strides(lengths, quantiles):\n    if lengths.size(0) < 5_000:\n        return _get_quantiles(lengths, quantiles)\n    \n    sample = torch.randint(0, lengths.size(0), size=(2_000,))\n\n… 651 lines …\n    # Marker in place\n… 39 lines …\n    expected_doc_ids = torch.tensor([\n        101,     2,  1996,  3739,  1997,  4807, 13463,  4045,  9273,  2001,\n        8053,  2590,  2000,  1996,  3112,  1997,  1996,  7128,  2622,  2004,\n        4045, 24823,  2001,  1012,  1996,  2069,  6112,  5689,  2058,  1996,\n        8052,  6344,  1997,  1996,  9593,  6950,  1998,  6145,  2003,  2054,\n        2037,  3112,  5621,  3214,  1025,  5606,  1997,  5190,  1997,  7036,\n        3268, 27885, 22779,  9250,  1012,   102,     0,     0,     0,     0,\n… 698 lines …\n==> colbert/utilities/minicorpus.py <==\n… 10 lines …\ndef sample_minicorpus(name, factor, topk=30, maxdev=3000):\n    \"\"\"\n    Factor:\n        * nano=1\n        * micro=10\n        * mini=100\n        * small=100 with topk=100\n… 16 lines …\n    # Sample NT and ND queries from each, keep only the top-k passages for those\n    sample_train = random.sample(list(qas_train.keys()), min(len(qas_train.keys()), 300*factor))\n    sample_dev = random.sample(list(qas_dev.keys()), min(len(qas_dev.keys()), maxdev, 30*factor))\n\n    train_pids = [pid for qid in sample_train for qpids in ranking_train[qid][:topk] for pid in qpids]\n    dev_pids = [pid for qid in sample_dev for qpids in ranking_dev[qid][:topk] for pid in qpids]\n\n    sample_pids = sorted(list(set(train_pids + dev_pids)))\n    print(f'len(sample_pids) = {len(sample_pids)}')\n\n    # Save the new query sets: train and dev\n… 4 lines …\n\n    new_train = Queries(data={qid: qas_train[qid] for qid in sample_train})\n    new_train.save(os.path.join(ROOT, 'train/questions.tsv'))\n    new_train.save_qas(os.path.join(ROOT, 'train/qas.json'))\n\n    new_dev = Queries(data={qid: qas_dev[qid] for qid in sample_dev})\n    new_dev.save(os.path.join(ROOT, 'dev/questions.tsv'))\n    new_dev.save_qas(os.path.join(ROOT, 'dev/qas.json'))\n\n    # Save the new collection\n… 6 lines …\nif __name__ == '__main__':\n    sample_minicorpus('medium', 150, topk=300)\n==> colbert/utils/amp.py <==\n… 427 lines …\n# import mlflow\n… 31 lines …\n            if os.path.exists(self.path):\n… 3 lines …\n\n                # TODO: This should timeout and exit (i.e., fail) given no response for 60 seconds.\n\n… 37 lines …\n        except Exception as ex:\n            self._logger._log_exception(ex.__class__, ex, ex.__traceback__)\n            self._logger._log_all_artifacts()\n\n            self.exit_status = 'FAILED'  # mlflow.entities.RunStatus.FAILED\n\n… 1004 lines …\n==> utility/preprocess/queries_split.py <==\n… 14 lines …\ndef main(args):\n… 29 lines …\n\n    assert len(sample_a_indices) == size_a\n    assert len(sample_b_indices) == size_b\n\n    sample_a = [keys[idx] for idx in sample_a_indices]\n    sample_b = [keys[idx] for idx in sample_b_indices]\n\n    \"\"\"\n    Write the output\n… 314 lines …\n==> utility/supervision/self_training.py <==\n… 27 lines …\ndef sample_for_query(qid, ranking, npositives, depth_positive, depth_negative, cutoff_negative):\n    \"\"\"\n        Requires that the ranks are sorted per qid.\n    \"\"\"\n    assert npositives <= depth_positive < cutoff_negative < depth_negative\n… 15 lines …\n\n    for neg in sample_negatives(negatives, num_sampled):\n        positives_ = random.sample(positives, npositives)\n… 73 lines …\n==> utility/supervision/triples.py <==\n… 19 lines …\ndef sample_negatives(negatives, num_sampled, biased=None):\n    assert biased in [None, 100, 200], \"NOTE: We bias 50% from the top-200 negatives, if there are twice or more.\"\n\n… 10 lines …\n        if len(oversampled) < len(undersampled):\n            return random.sample(oversampled, num_sampled_top100) + random.sample(undersampled, num_sampled_rest)\n\n    return random.sample(negatives, num_sampled)\n\n\ndef sample_for_query(qid, ranking, args_positives, depth, permissive, biased):\n    \"\"\"\n        Requires that the ranks are sorted per qid.\n    \"\"\"\n\n… 19 lines …\n\n    for pos, neg_start in positives:\n        num_sampled = 100 if neg_start == 0 else 5\n        negatives_ = negatives[neg_start:]\n\n        biased_ = biased if neg_start == 0 else None\n        for neg in sample_negatives(negatives_, num_sampled, biased=biased_):\n            triples.append((qid, pos, neg))\n… 22 lines …\n            print_message(f\"#> Done with {processing_idx+1} questions!\\t\\t \"\n                          f\"{str(len(Triples) / 1000)}k triples for {NonEmptyQIDs} unqiue QIDs.\")\n\n… 55 lines …\n==> utility/utils/dpr.py <==\n… 10 lines …\nclass Tokens(object):\n… 5 lines …\n    LEMMA = 4\n    NER = 5\n\n… 15 lines …\n    def untokenize(self):\n        \"\"\"Returns the original text (with whitespace reinserted).\"\"\"\n        return ''.join([t[self.TEXT_WS] for t in self.data]).strip()\n… 15 lines …\n\n    def pos(self):\n        \"\"\"Returns a list of part-of-speech tags of each token.\n        Returns None if this annotation was not included.\n… 4 lines …\n\n    def lemmas(self):\n        \"\"\"Returns a list of the lemmatized text of each token.\n… 6 lines …\n    def entities(self):\n        \"\"\"Returns a list of named-entity-recognition tags of each token.\n        Returns None if this annotation was not included.\n… 4 lines …\n\n    def ngrams(self, n=1, uncased=False, filter_fn=None, as_strings=True):\n        \"\"\"Returns a list of all ngrams from length 1 to n.\n\n        Args:\n            n: upper limit of ngram length\n            uncased: lower cases text\n            filter_fn: user function that takes in an ngram list and returns\n              True or False to keep or not keep the ngram\n            as_string: return the ngram as a string vs list\n        \"\"\"\n\n        def _skip(gram):\n            if not filter_fn:\n… 3 lines …\n        words = self.words(uncased)\n        ngrams = [(s, e + 1)\n                  for s in range(len(words))\n                  for e in range(s, min(s + n, len(words)))\n                  if not _skip(words[s:e + 1])]\n\n        # Concatenate into strings\n        if as_strings:\n            ngrams = ['{}'.format(' '.join(words[s:e])) for (s, e) in ngrams]\n\n        return ngrams\n\n    def entity_groups(self):\n        \"\"\"Group consecutive entity tokens with the same NER tag.\"\"\"\n        entities = self.entities()\n… 9 lines …\n                # Chomp the sequence\n… 9 lines …\nclass Tokenizer(object):\n… 4 lines …\n    def tokenize(self, text):\n        raise NotImplementedError\n\n    def shutdown(self):\n        pass\n\n    def __del__(self):\n        self.shutdown()\n\n\nclass SimpleTokenizer(Tokenizer):\n    ALPHA_NUM = r'[\\p{L}\\p{N}\\p{M}]+'\n    NON_WS = r'[^\\p{Z}\\p{C}]'\n\n    def __init__(self, **kwargs):\n        \"\"\"\n        Args:\n            annotators: None or empty set (only tokenizes).\n        \"\"\"\n        self._regexp = regex.compile(\n            '(%s)|(%s)' % (self.ALPHA_NUM, self.NON_WS),\n            flags=regex.IGNORECASE + regex.UNICODE + regex.MULTILINE\n        )\n        if len(kwargs.get('annotators', {})) > 0:\n            logger.warning('%s only tokenizes! Skipping annotators: %s' %\n                           (type(self).__name__, kwargs.get('annotators')))\n        self.annotators = set()\n\n    def tokenize(self, text):\n        data = []\n… 5 lines …\n            # Get whitespace\n… 4 lines …\n            else:\n                end_ws = span[1]\n\n            # Format data\n… 8 lines …\ndef has_answer(tokenized_answers, text):\n    text = DPR_normalize(text)\n\n    for single_answer in tokenized_answers:\n        for i in range(0, len(text) - len(single_answer) + 1):\n… 5 lines …\n\ndef locate_answers(tokenized_answers, text):\n    \"\"\"\n    Returns each occurrence of an answer as (offset, endpos) in terms of *characters*.\n    \"\"\"\n    tokenized_text = DPR_tokenize(text)\n    occurrences = []\n\n    text_words, text_word_positions = tokenized_text.words(uncased=True), tokenized_text.offsets()\n    answers_words = [ans.words(uncased=True) for ans in tokenized_answers]\n\n    for single_answer in answers_words:\n        for i in range(0, len(text_words) - len(single_answer) + 1):\n            if single_answer == text_words[i: i + len(single_answer)]:\n… 9 lines …\ndef DPR_tokenize(text):\n    return STokenizer.tokenize(unicodedata.normalize('NFD', text))\n\n… 5 lines …\n# Source: https://github.com/shmsw25/qa-hard-em/blob/master/prepro_util.py\ndef strip_accents(text):\n    \"\"\"Strips accents from a piece of text.\"\"\"\n    text = unicodedata.normalize(\"NFD\", text)\n    output = []\n    for char in text:\n      cat = unicodedata.category(char)\n      if cat == \"Mn\":\n        continue\n      output.append(char)\n    return \"\".join(output)\n==> utility/utils/qa_loaders.py <==\n… 7 lines …\ndef load_collection_(path, retain_titles):\n… 3 lines …\n        for line in file_tqdm(f):\n            _, passage, title = line.strip().split('\\t')\n\n            if retain_titles:\n                passage = title + ' | ' + passage\n\n            collection.append(passage)\n\n    return collection\n\n\ndef load_qas_(path):\n    print_message(\"#> Loading the reference QAs from\", path)\n\n    triples = []\n\n… 6 lines …\n==> utility/utils/save_metadata.py <==\n… 10 lines …\ndef get_metadata_only():\n    args = dotdict()\n\n    args.hostname = socket.gethostname()\n    try:\n        args.git_branch = git.Repo(search_parent_directories=True).active_branch.name\n        args.git_hash = git.Repo(search_parent_directories=True).head.object.hexsha\n        args.git_commit_datetime = str(git.Repo(search_parent_directories=True).head.object.committed_datetime)\n    except git.exc.InvalidGitRepositoryError as e:\n        pass\n    args.current_datetime = time.strftime('%b %d, %Y ; %l:%M%p %Z (%z)')\n    args.cmd = ' '.join(sys.argv)\n… 4 lines …\ndef get_metadata(args):\n    args = copy.deepcopy(args)\n\n    args.hostname = socket.gethostname()\n    args.git_branch = git.Repo(search_parent_directories=True).active_branch.name\n    args.git_hash = git.Repo(search_parent_directories=True).head.object.hexsha\n    args.git_commit_datetime = str(git.Repo(search_parent_directories=True).head.object.committed_datetime)\n    args.current_datetime = time.strftime('%b %d, %Y ; %l:%M%p %Z (%z)')\n    args.cmd = ' '.join(sys.argv)\n\n    try:\n        args.input_arguments = copy.deepcopy(args.input_arguments.__dict__)\n    except:\n        args.input_arguments = None\n\n    return dict(args.__dict__)\n\n# TODO:  No reason for deepcopy. But: (a) Call provenance() on objects that can, (b) Only save simple, small objects. No massive lists or models or weird stuff!\n# With that, I think we don't even need (necessarily) to restrict things to input_arguments.\n\ndef format_metadata(metadata):\n    assert type(metadata) == dict\n\n    return ujson.dumps(metadata, indent=4)\n\n\ndef save_metadata(path, args):\n    assert not os.path.exists(path), path\n\n… 3 lines …\n\n    return data\n"
+  },
+  "review_notes": "",
+  "reference_lines": {
+    "by": "Claude, from the ColBERT repo at cc4f3dc and the query only",
+    "lines": [
+      {
+        "path": "colbert/indexing/collection_indexer.py",
+        "line": 267,
+        "text": "        # Shuffle and split out a 5% \"heldout\" sub-sample [up to 50k elements]"
+      },
+      {
+        "path": "colbert/indexing/collection_indexer.py",
+        "line": 272,
+        "text": "        heldout_fraction = 0.05"
+      },
+      {
+        "path": "colbert/indexing/collection_indexer.py",
+        "line": 273,
+        "text": "        heldout_size = int(min(heldout_fraction * sample.size(0), 50_000))"
+      },
+      {
+        "path": "colbert/indexing/collection_indexer.py",
+        "line": 274,
+        "text": "        sample, sample_heldout = sample.split([sample.size(0) - heldout_size, heldout_size], dim=0)"
+      },
+      {
+        "path": "colbert/indexing/collection_indexer.py",
+        "line": 278,
+        "text": "        return sample, sample_heldout"
+      }
+    ]
+  }
+}

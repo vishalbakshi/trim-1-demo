@@ -1,0 +1,158 @@
+[
+  {
+    "point": "balanced",
+    "query": "What loss function is used for training?",
+    "started_at": "2026-10-14T19:10:08-07:00",
+    "url": "traces/2026-10-14/191009-what-loss-function-is-used-for-training.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Can I continue indexing after a crash?",
+    "started_at": "2026-10-14T19:07:17-07:00",
+    "url": "traces/2026-10-14/190718-can-i-continue-indexing-after-a-crash.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What loss function is used for training?",
+    "started_at": "2026-10-14T19:07:17-07:00",
+    "url": "traces/2026-10-14/190717-what-loss-function-is-used-for-training.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Are commas and periods ignored when embedding documents?",
+    "started_at": "2026-10-14T19:07:16-07:00",
+    "url": "traces/2026-10-14/190717-are-commas-and-periods-ignored-when-embedding-do.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Where are the document embeddings written to disk?",
+    "started_at": "2026-10-14T19:07:16-07:00",
+    "url": "traces/2026-10-14/190716-where-are-the-document-embeddings-written-to-dis.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How does ColBERT decide which documents to score fully?",
+    "started_at": "2026-10-14T19:07:15-07:00",
+    "url": "traces/2026-10-14/190716-how-does-colbert-decide-which-documents-to-score.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Where is Q_marker_token_id inserted into the query?",
+    "started_at": "2026-10-14T19:07:14-07:00",
+    "url": "traces/2026-10-14/190715-where-is-q-marker-token-id-inserted-into-the-que.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How are bucket_weights used to decompress residuals?",
+    "started_at": "2026-10-14T19:07:15-07:00",
+    "url": "traces/2026-10-14/190715-how-are-bucket-weights-used-to-decompress-residu.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Why do I get \"faiss must be imported for indexing\"?",
+    "started_at": "2026-10-14T19:07:14-07:00",
+    "url": "traces/2026-10-14/190714-why-do-i-get-faiss-must-be-imported-for-indexing.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What is the default doc_maxlen?",
+    "started_at": "2026-10-14T19:07:13-07:00",
+    "url": "traces/2026-10-14/190714-what-is-the-default-doc-maxlen.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What does ncells control during search?",
+    "started_at": "2026-10-14T19:07:13-07:00",
+    "url": "traces/2026-10-14/190713-what-does-ncells-control-during-search.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How are the residuals compressed?",
+    "started_at": "2026-10-14T18:32:47-07:00",
+    "url": "traces/2026-10-14/183247-how-are-the-residuals-compressed.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How does multi-GPU search work?",
+    "started_at": "2026-10-14T18:32:05-07:00",
+    "url": "traces/2026-10-14/183205-how-does-multi-gpu-search-work.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Is there a threshold for final document selection?",
+    "started_at": "2026-10-14T18:31:25-07:00",
+    "url": "traces/2026-10-14/183125-is-there-a-threshold-for-final-document-selectio.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What is the data structure of a search result?",
+    "started_at": "2026-10-14T18:29:40-07:00",
+    "url": "traces/2026-10-14/182940-what-is-the-data-structure-of-a-search-result.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How many query tokens are used during search?",
+    "started_at": "2026-10-14T18:29:01-07:00",
+    "url": "traces/2026-10-14/182902-how-many-query-tokens-are-used-during-search.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How are vectors quantized?",
+    "started_at": "2026-10-14T18:27:52-07:00",
+    "url": "traces/2026-10-14/182752-how-are-vectors-quantized.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Where do I define the model used for indexing?",
+    "started_at": "2026-10-14T18:27:16-07:00",
+    "url": "traces/2026-10-14/182716-where-do-i-define-the-model-used-for-indexing.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Are documents embedded in batches?",
+    "started_at": "2026-10-14T18:26:31-07:00",
+    "url": "traces/2026-10-14/182632-are-documents-embedded-in-batches.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Are query token vectors padded?",
+    "started_at": "2026-10-14T18:25:27-07:00",
+    "url": "traces/2026-10-14/182527-are-query-token-vectors-padded.json"
+  },
+  {
+    "point": "balanced",
+    "query": "Which library is used to compute centroids?",
+    "started_at": "2026-10-14T18:24:46-07:00",
+    "url": "traces/2026-10-14/182446-which-library-is-used-to-compute-centroids.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How is MaxSim calculated?",
+    "started_at": "2026-10-14T18:24:07-07:00",
+    "url": "traces/2026-10-14/182407-how-is-maxsim-calculated.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What is MaxSim?",
+    "started_at": "2026-10-14T18:23:51-07:00",
+    "url": "traces/2026-10-14/182352-what-is-maxsim.json"
+  },
+  {
+    "point": "balanced",
+    "query": "How is the MaxSim calculation implemented in Python?",
+    "started_at": "2026-10-14T18:23:15-07:00",
+    "url": "traces/2026-10-14/182315-how-is-the-maxsim-calculation-implemented-in-pyt.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What is sample_heldout?",
+    "started_at": "2026-10-14T18:14:22-07:00",
+    "url": "traces/2026-10-14/181422-what-is-sample-heldout.json"
+  },
+  {
+    "point": "balanced",
+    "query": "What is sample_heldout?",
+    "started_at": "2026-10-14T17:17:41-07:00",
+    "url": "traces/2026-10-14/171741-what-is-sample-heldout.json"
+  }
+]
